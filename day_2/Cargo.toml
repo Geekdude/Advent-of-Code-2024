@@ -1,0 +1,9 @@
+[package]
+name = "day_2"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+itertools = "0.13.0"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
