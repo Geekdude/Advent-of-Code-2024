@@ -1,0 +1,10 @@
+[package]
+name = "day_3"
+version = "0.1.0"
+edition = "2021"
+description = "Day 3 of advent of code."
+
+[dependencies]
+clap = { version = "4.5.23", features = ["derive"] }
+itertools = "0.13.0"
+regex = "1.11.1"
