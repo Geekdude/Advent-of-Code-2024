@@ -2,8 +2,46 @@ use clap::Parser;
 use regex::Regex;
 use itertools::Itertools;
 use std::collections::BTreeMap;
-
 use std::fs;
+
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    /// Filename to read the input from.
+    filename: Option<String>,
+}
+
+fn main() {
+
+    let cli = Args::parse();
+
+    let filename = cli.filename.unwrap_or("files/test_input.txt".to_string());
+
+    part_1(&filename);
+
+    part_2(&filename);
+
+}
+
+fn part_1 (filename: &str) -> i32 {
+
+    let contents = read_from_file(filename);
+
+    let value= calcualte_value_part_1(&contents);
+
+    println!("Part 1 Solution: {value}");
+    value
+}
+
+fn part_2 (filename: &str) -> i32 {
+
+    let contents = read_from_file(filename);
+
+    let value= calcualte_value_part_2(&contents);
+
+    println!("Part 2 Solution: {value}");
+    value
+}
 
 fn read_from_file(filename: &str) -> String {
     fs::read_to_string(filename).expect("Unable to read file.")
@@ -52,45 +90,6 @@ fn calcualte_value_part_2(contents: &str) -> i32 {
     }
 
     sum
-
-}
-
-#[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
-struct Args {
-    /// Filename to read the input from.
-    filename: Option<String>,
-}
-
-fn part_1 (filename: &str) -> i32 {
-
-    let contents = read_from_file(filename);
-
-    let value= calcualte_value_part_1(&contents);
-
-    println!("Part 1 Solution: {value}");
-    value
-}
-
-fn part_2 (filename: &str) -> i32 {
-
-    let contents = read_from_file(filename);
-
-    let value= calcualte_value_part_2(&contents);
-
-    println!("Part 2 Solution: {value}");
-    value
-}
-
-fn main() {
-
-    let cli = Args::parse();
-
-    let filename = cli.filename.unwrap_or("files/test_input.txt".to_string());
-
-    part_1(&filename);
-
-    part_2(&filename);
 
 }
 
