@@ -27,7 +27,7 @@ fn part_1 (filename: &str) -> i32 {
 
     let contents = read_from_file(filename);
 
-    let value= calcualte_value_part_1(&contents);
+    let value = calculate_value_part_1(&contents);
 
     println!("Part 1 Solution: {value}");
     value
@@ -37,7 +37,7 @@ fn part_2 (filename: &str) -> i32 {
 
     let contents = read_from_file(filename);
 
-    let value= calcualte_value_part_2(&contents);
+    let value = calculate_value_part_2(&contents);
 
     println!("Part 2 Solution: {value}");
     value
@@ -47,7 +47,7 @@ fn read_from_file(filename: &str) -> String {
     fs::read_to_string(filename).expect("Unable to read file.")
 }
 
-fn calcualte_value_part_1(contents: &str) -> i32 {
+fn calculate_value_part_1(contents: &str) -> i32 {
     let re = Regex::new(r"mul\((\d\d?\d?),(\d\d?\d?)\)").unwrap();
 
     re.captures_iter(contents).map(|m| {
@@ -61,7 +61,7 @@ enum Control {
     Dont,
 }
 
-fn calcualte_value_part_2(contents: &str) -> i32 {
+fn calculate_value_part_2(contents: &str) -> i32 {
     let re = Regex::new(r"mul\((\d\d?\d?),(\d\d?\d?)\)").unwrap();
     let re_do = Regex::new(r"do\(\)").unwrap();
     let re_dont = Regex::new(r"don't\(\)").unwrap();
