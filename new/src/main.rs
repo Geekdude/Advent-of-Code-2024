@@ -64,20 +64,20 @@ mod tests {
 
     #[test]
     fn test_part_1_real_input() {
-        // let answer = part_1("files/day3_input.txt");
+        // let answer = part_1("files/day_3.txt");
         // assert!(answer == 181345830);
     }
 
     #[test]
     fn test_part_2_test_input() {
-        // let answer = part_2("files/test2_input.txt");
+        // let answer = part_2("files/test_input.txt");
         // assert!(answer == 48);
     }
 
     #[test]
     fn test_part_2_real_input() {
-        // let _answer = part_2("files/day3_input.txt");
-        // // assert!(answer == 181345830);
+        // let answer = part_2("files/day_3.txt");
+        // assert!(answer == 181345830);
     }
 }
 
