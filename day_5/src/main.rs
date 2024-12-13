@@ -98,7 +98,6 @@ fn read_from_file(filename: &str) -> (PrintRules, PrintJobs) {
             let x = print_rules.get_or_add_node(x);
             let y = print_rules.get_or_add_node(y);
             print_rules.rules.add_edge(x, y, ());
-            // print_rules.rules.add_edge(cap[1].parse().unwrap(), cap[2].parse().unwrap());
         }
         else if !trimmed.is_empty() {
             print_jobs.jobs.push(trimmed.split(',').map(|x| x.parse().unwrap()).collect());                        
