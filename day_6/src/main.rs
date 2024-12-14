@@ -1,5 +1,6 @@
 use clap::Parser;
 use std::{char, collections::HashSet, fs};
+use rayon::prelude::*;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -230,33 +231,33 @@ fn calculate_value_part_2(contents: &str) -> i32 {
 
     let guard_next_loc = guard.location.next_location(&Direction::North);
 
-    let mut count = 0;
+    (0..map.map.len()).into_par_iter().map(
+        |i| {
+            (0..map.map[i].len()).into_par_iter().map(|j| {
+                    if map.map[i][j] == CellType::Unvisited && !(i == guard_next_loc.row as usize && j == guard_next_loc.col as usize ) {
+                        let mut map_ut = map.clone();
+                        let mut guard_ut = guard.clone();
+                        map_ut.add_obstacle(&Location { row: i as i32, col: j as i32 });
 
-    for i in 0..map.map.len() {
-        for j in 0..map.map[i].len() {
-            if map.map[i][j] == CellType::Unvisited && !(i == guard_next_loc.row as usize && j == guard_next_loc.col as usize ) {
-                let mut map_ut = map.clone();
-                let mut guard_ut = guard.clone();
-                map_ut.add_obstacle(&Location { row: i as i32, col: j as i32 });
+                        let mut loop_check = HashSet::new(); 
 
-                let mut loop_check = HashSet::new(); 
-
-                loop {
-                    let result = guard_ut.move_guard(&mut map_ut);
-                    if result == MoveResult::Exit {break}
-                    if loop_check.contains(&guard_ut) {
-                        count += 1;
-                        break;
+                        loop {
+                            let result = guard_ut.move_guard(&mut map_ut);
+                            if result == MoveResult::Exit {break}
+                            if loop_check.contains(&guard_ut) {
+                                return 1;
+                            }
+                            else {
+                                loop_check.insert(guard_ut.clone());
+                            }
+                        }
+                        return 0;
                     }
-                    else {
-                        loop_check.insert(guard_ut.clone());
-                    }
+                    0
                 }
-            }
+            ).sum::<i32>()
         }
-    }
-
-    count
+    ).sum()
 }
 
 #[cfg(test)]
