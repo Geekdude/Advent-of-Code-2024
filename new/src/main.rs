@@ -58,26 +58,30 @@ mod tests {
 
     #[test]
     fn test_part_1_test_input() {
-        // let answer = part_1("files/test_input.txt");
-        // assert!(answer == 161);
+        let answer = part_1("files/test_input.txt");
+        let correct = 3749;
+        assert!(answer == correct, "Answer is {answer} not {correct}.");
     }
 
     #[test]
     fn test_part_1_real_input() {
         // let answer = part_1("files/day_3.txt");
-        // assert!(answer == 181345830);
+        // let correct = 3749;
+        // assert!(answer == correct, "Answer is {answer} not {correct}.");
     }
 
     #[test]
     fn test_part_2_test_input() {
         // let answer = part_2("files/test_input.txt");
-        // assert!(answer == 48);
+        // let correct = 3749;
+        // assert!(answer == correct, "Answer is {answer} not {correct}.");
     }
 
     #[test]
     fn test_part_2_real_input() {
         // let answer = part_2("files/day_3.txt");
-        // assert!(answer == 181345830);
+        // let correct = 3749;
+        // assert!(answer == correct, "Answer is {answer} not {correct}.");
     }
 }
 
